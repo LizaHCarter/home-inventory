@@ -1,9 +1,9 @@
 'use strict';
 
-function Item(name, room, dateAcquired, count, cost){
+function Item(name, room, acquired, count, cost){
   this.name = name;
   this.room = room;
-  this.dateAcquired = dateAcquired;
+  this.acquired = new Date(acquired);
   this.count = parseInt(count);
   this.cost = parseInt(cost);
 }

@@ -12,9 +12,11 @@ describe('Item', function(){
       expect(table).to.be.instanceof(Item);
       expect(table.name).to.equal('table');
       expect(table.room).to.equal('living room');
-      expect(table.dateAcquired).to.equal('07/23/2014');
+      expect(table.acquired).to.be.instanceof(Date);
       expect(table.count).to.equal(2);
+      expect(table.count).to.be.a('number');
       expect(table.cost).to.equal(100);
+      expect(table.cost).to.be.a('number');
      });
   });
 });
