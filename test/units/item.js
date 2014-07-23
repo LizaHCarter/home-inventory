@@ -59,16 +59,19 @@ describe('Item', function(){
     });
 
     it('should find the couches from the mongo database', function(done){
-      var chair = new Item('chair', 'dining room','07/23/2014', '4','500');
-      chair.save(function(){});
-      var bed = new Item('bed', 'bed room','07/23/2014', '1','2000');
-      bed.save(function(){});
       var couch = new Item('couch', 'living room','07/23/2014', '2','1100');
+      var chair = new Item('chair', 'dining room','07/23/2014', '4','500');
+      var bed = new Item('bed', 'bed room','07/23/2014', '1','2000');
+     
       couch.save(function(){
-        Item.find({name:'couch'}, function(items){
-          console.log(items);
-          expect(items.length).to.equal(1);
-          done();
+        chair.save(function(){
+          bed.save(function(){
+            Item.find({name: 'chair'}, function (items){
+              expect(items).to.have.length(1);
+              expect(items[0].name).to.equal('chair');
+              done();
+            });
+          });
         });
       });
     });
