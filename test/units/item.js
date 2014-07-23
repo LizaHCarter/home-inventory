@@ -75,5 +75,37 @@ describe('Item', function(){
         });
       });
     });
+
+    describe('#value', function(){
+     it('should calculate the total value of item types', function(){
+       var couch = new Item('couch', 'living room','07/23/2014', '2','1100');
+       var val = couch.value();
+       expect(val).to.equal(2200);
+     });
+     });
+    describe('.totalValue', function(){
+      it('should calculate the total value of items in a space', function(done){
+      var table = new Item('table', 'dining room','07/23/2014', '1','3000');
+      var chair = new Item('chair', 'living room','07/23/2014', '3','300');
+      var couch = new Item('couch', 'living room','07/23/2014', '2','1100');
+      var chair2 = new Item('chair', 'dining room','07/23/2014', '4','500');
+      var bed = new Item('bed', 'bed room','07/23/2014', '1','2000');
+
+      table.save(function(){
+        chair.save(function(){
+          couch.save(function(){
+            chair2.save(function(){
+              bed.save(function(){
+                Item.totalValue({room: 'dining room'}, function(totalValue){
+                  expect(totalValue).to.equal(5000);
+                  done();
+                  });
+                });
+              });
+            });
+          });
+        });
+      });
+    });
   });
 });

@@ -21,6 +21,7 @@
   "homepage": "https://github.com/LizaHCarter/home-inventory",
   "dependencies": {
     "chalk": "^0.5.1",
+    "lodash": "^2.4.1",
     "mongo": "^0.1.0",
     "mongodb": "^1.4.7",
     "request": "^2.38.0",
